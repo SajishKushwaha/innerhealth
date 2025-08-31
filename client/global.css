@@ -1,0 +1,233 @@
+/** @import must precede all other statements */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /**
+   * Tailwind CSS theme
+   * tailwind.config.ts expects the following color variables to be expressed as HSL values.
+   * A different format will require also updating the theme in tailwind.config.ts.
+  */
+  :root {
+    /* Softer professional palette */
+    --neon-aqua: 190 86% 45%;
+    --neon-violet: 262 65% 56%;
+    --neon-green: 158 60% 44%;
+
+    --background: 222 47% 6%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 12%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 10%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: var(--neon-aqua);
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 252 100% 64%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 220 14% 18%;
+    --muted-foreground: 215 20% 78%;
+
+    --accent: var(--neon-green);
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 16% 18%;
+    --input: 217 16% 18%;
+    --ring: var(--neon-violet);
+
+    --radius: 0.9rem;
+
+    --sidebar-background: 228 30% 7%;
+    --sidebar-foreground: 210 40% 96%;
+    --sidebar-primary: var(--neon-aqua);
+    --sidebar-primary-foreground: 222.2 47.4% 11.2%;
+    --sidebar-accent: 220 16% 14%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217 16% 16%;
+    --sidebar-ring: var(--neon-aqua);
+  }
+
+  .light {
+    --background: 0 0% 98%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* same as :root for clarity */
+    --background: 222 47% 6%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 12%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 10%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: var(--neon-aqua);
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 252 100% 64%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 220 14% 18%;
+    --muted-foreground: 215 20% 78%;
+
+    --accent: var(--neon-green);
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 16% 18%;
+    --input: 217 16% 18%;
+    --ring: var(--neon-violet);
+
+    --sidebar-background: 228 30% 7%;
+    --sidebar-foreground: 210 40% 96%;
+    --sidebar-primary: var(--neon-aqua);
+    --sidebar-primary-foreground: 222.2 47.4% 11.2%;
+    --sidebar-accent: 220 16% 14%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217 16% 16%;
+    --sidebar-ring: var(--neon-aqua);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border antialiased;
+  }
+
+  html, body, #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground font-grotesk overflow-x-hidden;
+    background-image: radial-gradient(1000px 600px at 10% -10%, hsla(var(--neon-violet)/0.06), transparent),
+      radial-gradient(900px 600px at 120% 0%, hsla(var(--neon-aqua)/0.05), transparent);
+    background-attachment: fixed;
+  }
+
+  .glass {
+    background-color: hsl(var(--card) / 0.7);
+    border: 1px solid hsl(var(--border) / 0.25);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 8px 24px rgba(0,0,0,.18);
+  }
+
+  @media (max-width: 640px) {
+    .glass { background-color: hsl(var(--card) / 0.9) !important; }
+  }
+
+  .light .glass { background-color: hsl(var(--card) / 0.98); }
+
+  .card-glow {
+    box-shadow:
+      inset 0 1px 0 hsla(var(--border)/0.6),
+      0 10px 30px rgba(0,0,0,.15);
+  }
+
+  /* Subtle shadows in dark mode */
+  .dark .glass {
+    background-color: hsl(var(--card) / 0.88);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+  }
+  .dark .card-glow {
+    box-shadow:
+      inset 0 1px 0 hsla(var(--border)/0.5),
+      0 8px 22px rgba(0, 0, 0, 0.26);
+  }
+  .dark .shadow-neon-violet {
+    box-shadow: 0 0 14px hsl(var(--neon-violet) / 0.14), 0 0 22px hsl(var(--neon-violet) / 0.08);
+  }
+  .dark .shadow-neon-aqua {
+    box-shadow: 0 0 14px hsl(var(--neon-aqua) / 0.14), 0 0 22px hsl(var(--neon-aqua) / 0.08);
+  }
+  .dark .shadow-neon-green {
+    box-shadow: 0 0 14px hsl(var(--neon-green) / 0.14), 0 0 22px hsl(var(--neon-green) / 0.08);
+  }
+}
+
+/* Print styles for high-quality PDF export */
+@media print {
+  :root, .light, .dark {
+    --background: 0 0% 100% !important;
+    --foreground: 222.2 84% 4.9% !important;
+  }
+  html, body {
+    background: #ffffff !important;
+    color: #111827 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  aside, header, .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .glass, .card-glow, .shadow-neon-violet, .shadow-neon-aqua, .shadow-neon-green {
+    box-shadow: none !important;
+    background: #ffffff !important;
+    border-color: #e5e7eb !important;
+  }
+  main {
+    padding: 0 !important;
+  }
+  @page {
+    size: A4;
+    margin: 16mm;
+  }
+}
+
+/* When mobile nav is open, hide page content under it */
+@media (max-width: 1024px) {
+  /* Keep content visible to preserve scroll position while disabling interactions */
+  .nav-open main { pointer-events: none; }
+}
